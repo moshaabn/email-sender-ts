@@ -1,4 +1,3 @@
-Here’s a sample `README.md` for your email sending service:
 
 ```markdown
 # Email Sending Service
