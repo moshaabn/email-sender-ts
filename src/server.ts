@@ -13,16 +13,19 @@ app.use(express.json());
 // Email sending endpoint
 app.post("/send-email", async (req: Request, res: Response) => {
   req.body.to = process.env.RECEIVER;
-  const { to, subject, message } = req.body;
+  const { to, subject, name, email, phone, message } = req.body;
 
-  if (!to || !subject || !message) {
+  if (!to || !subject || !name || !email || !phone || !message) {
     return res
       .status(400)
-      .send({ error: "Missing required fields: to, subject, or message" });
+      .send({
+        error:
+          "Missing required fields: to, subject, name, email, phone, message",
+      });
   }
 
   try {
-    await sendEmail(to, subject, message);
+    await sendEmail(to, subject, name, email, phone, message);
     res.status(200).send({ message: "Email sent successfully" });
   } catch (error: any) {
     // Check if the error contains '403' in the message

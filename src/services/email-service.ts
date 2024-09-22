@@ -3,14 +3,17 @@ import nodemailer from "nodemailer";
 export const sendEmail = async (
   to: string,
   subject: string,
+  name: string,
+  email: string,
+  phone: string,
   message: string
 ) => {
   const host = process.env.HOST;
-  const email = process.env.EMAIL;
+  const fromEmail = process.env.EMAIL;
   const pass = process.env.PASS;
   console.log(host, process.env.Email_PORT, email, pass);
 
-  if (!host || !email || !pass) {
+  if (!host || !fromEmail || !pass) {
     throw new Error("Missing email configuration in environment variables.");
   }
 
@@ -18,16 +21,23 @@ export const sendEmail = async (
     host: host,
     secure: true, // True for 465, false for other ports
     auth: {
-      user: email,
+      user: fromEmail,
       pass: pass,
     },
   });
 
   const mailOptions = {
-    from: email,
+    from: fromEmail,
     to,
     subject,
-    text: message,
+    text: `
+      A new message is sent from your form
+      Subject: ${subject},
+      Name: ${name},
+      Email: ${email},
+      Phone: ${phone},
+      Message: ${message},
+    `,
   };
 
   try {
