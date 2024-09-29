@@ -1,19 +1,20 @@
 import express, { Request, Response } from "express";
 import { sendEmail } from "./services/email-service";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 // Middleware to parse JSON bodies
 app.use(express.json());
-
 // Email sending endpoint
 app.post("/send-email", async (req: Request, res: Response) => {
   req.body.to = process.env.RECEIVER;
   const { to, subject, name, email, phone, message } = req.body;
+  console.log("Request Body:", req.body);
 
   if (!to || !subject || !name || !email || !phone || !message) {
     return res
