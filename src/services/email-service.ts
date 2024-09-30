@@ -6,7 +6,8 @@ export const sendEmail = async (
   name: string,
   email: string,
   phone: string,
-  description: string
+  description: string,
+  nda: boolean
 ) => {
   const host = process.env.HOST;
   const fromEmail = process.env.EMAIL;
@@ -38,7 +39,7 @@ export const sendEmail = async (
         <li><strong>Email:</strong> ${email}</li>
         <li><strong>Phone:</strong> ${phone}</li>
         <li><strong>Description:</strong> ${description}</li>
-        <li><strong>NDA:</strong> true</li>
+        <li><strong>NDA:</strong> ${nda}</li>
       </ul>
     `,
   };
