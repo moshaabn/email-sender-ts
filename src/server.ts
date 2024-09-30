@@ -15,7 +15,7 @@ app.post("/send-email", async (req: Request, res: Response) => {
   req.body.to = process.env.RECEIVER;
   const {
     to,
-    subject: industry,
+    industry,
     name,
     email,
     phone,
