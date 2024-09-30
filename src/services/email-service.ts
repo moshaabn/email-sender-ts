@@ -30,14 +30,16 @@ export const sendEmail = async (
     from: fromEmail,
     to,
     subject: industry,
-    text: `
-      A new message is sent from your form
-      Dndustry: ${industry},
-      Name: ${name},
-      Email: ${email},
-      Phone: ${phone},
-      Description: ${description},
-      NDA: true
+    html: `
+      <p>A new message is sent from your form:</p>
+      <ul>
+        <li><strong>Industry:</strong> ${industry}</li>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Phone:</strong> ${phone}</li>
+        <li><strong>Description:</strong> ${description}</li>
+        <li><strong>NDA:</strong> true</li>
+      </ul>
     `,
   };
 
