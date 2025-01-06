@@ -24,7 +24,7 @@ app.post("/send-email", async (req: Request, res: Response) => {
     nda } = req.body;
   console.log("Request Body:", req.body);
 
-  if (!to || !industry || !name || !email || !phone || !description ) {
+  if (!to || !industry || !name || !email || !phone || !description || !budget) {
     return res.status(400).send({
       error:
         "Missing required fields: subject, name, email, phone, message, nda",
