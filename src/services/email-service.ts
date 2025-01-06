@@ -7,6 +7,7 @@ export const sendEmail = async (
   email: string,
   phone: string,
   description: string,
+  budget: number,
   nda: boolean
 ) => {
   const host = process.env.HOST;
@@ -39,6 +40,7 @@ export const sendEmail = async (
         <li><strong>Email:</strong> ${email}</li>
         <li><strong>Phone:</strong> ${phone}</li>
         <li><strong>Description:</strong> ${description}</li>
+        <li><strong>Budget:</strong> ${budget}</li>
         <li><strong>NDA:</strong> ${nda}</li>
       </ul>
     `,
