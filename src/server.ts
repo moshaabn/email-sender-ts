@@ -15,24 +15,21 @@ app.post("/send-email", async (req: Request, res: Response) => {
   req.body.to = process.env.RECEIVER;
   const {
     to,
-    industry,
     name,
     email,
     phone,
     description,
-    budget,
-    nda } = req.body;
+    budget} = req.body;
   console.log("Request Body:", req.body);
 
-  if (!to || !industry || !name || !email || !phone || !description || !budget) {
+  if (!to ||  !name || !email || !phone || !description || !budget) {
     return res.status(400).send({
-      error:
-        "Missing required fields: subject, name, email, phone, message, nda",
+      error: "Missing required fields:  name, email, phone, description, budget",
     });
   }
 
   try {
-    await sendEmail(to, industry, name, email, phone, description, budget, nda);
+    await sendEmail(to, name, email, phone, description, budget);
     res.status(200).send({ message: "Email sent successfully" });
   } catch (error: any) {
     // Check if the error contains '403' in the message

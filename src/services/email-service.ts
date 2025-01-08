@@ -2,13 +2,11 @@ import nodemailer from "nodemailer";
 
 export const sendEmail = async (
   to: string,
-  industry: string,
   name: string,
   email: string,
   phone: string,
   description: string,
-  budget: number,
-  nda: boolean
+  budget: number
 ) => {
   const host = process.env.HOST;
   const fromEmail = process.env.EMAIL;
@@ -31,17 +29,15 @@ export const sendEmail = async (
   const mailOptions = {
     from: fromEmail,
     to,
-    subject: industry,
+    subject: "New message from your form",
     html: `
       <p>A new message is sent from your form:</p>
       <ul>
-        <li><strong>Industry:</strong> ${industry}</li>
         <li><strong>Name:</strong> ${name}</li>
         <li><strong>Email:</strong> ${email}</li>
         <li><strong>Phone:</strong> ${phone}</li>
         <li><strong>Description:</strong> ${description}</li>
         <li><strong>Budget:</strong> ${budget}</li>
-        <li><strong>NDA:</strong> ${nda}</li>
       </ul>
     `,
   };
